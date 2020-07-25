@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour {
     }
 
     void Update() {
-        Vector3 moveDirection = Vector3.forward * Input.GetAxis("Vertical") + Vector3.right * Input.GetAxis("Horizontal");
+        Vector3 moveDirection = Vector3.up * Input.GetAxis("Vertical") + Vector3.right * Input.GetAxis("Horizontal");
         transform.position += moveDirection * speed * Time.deltaTime;
         mainCamera.orthographicSize += Input.GetAxis("3rd Dimension") * speed / 30;
     }

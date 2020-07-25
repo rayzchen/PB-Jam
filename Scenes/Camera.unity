@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 1003505931}
   - component: {fileID: 1003505930}
   m_Layer: 0
-  m_Name: Weirdness
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
