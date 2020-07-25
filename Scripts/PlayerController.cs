@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour {
     public Transform cam;
     public float speed = 5f;
     public float camSpeed = 4f;
+    public Sprite[] textures;
 
     Vector2 movement;
     Rigidbody2D rb;
