@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
     public Transform cam;
     public float speed = 5f;
-    public float camSpeed = 0.5f;
+    public float camSpeed = 4f;
 
     Vector2 movement;
     Rigidbody2D rb;
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
-        cam.position = Vector3.SmoothDamp(cam.position, new Vector3(transform.position.x, transform.position.y, -10), ref velocity, camSpeed);
+        cam.position = Vector3.SmoothDamp(cam.position, new Vector3(transform.position.x, transform.position.y, -10), ref velocity, 1 / camSpeed);
     }
 
     void FixedUpdate() {
