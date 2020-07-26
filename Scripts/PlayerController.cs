@@ -27,8 +27,8 @@ public class PlayerController : MonoBehaviour {
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
         if (movement.magnitude > 1) movement = movement.normalized;
-        cam.position = Vector3.SmoothDamp(cam.position, new Vector3(transform.position.x, transform.position.y, -10), ref velocity, 1 / camSpeed);
-        camera.orthographicSize *= 1 + 0.01f * Input.GetAxis("Z axis");
+        cam.position = Vector3.SmoothDamp(cam.position, new Vector3(transform.position.x, 0, -10), ref velocity, 1 / camSpeed);
+        camera.orthographicSize = (Mathf.Abs(transform.position.y) + 2 > 5) ? Mathf.Abs(transform.position.y) + 2 : 5;
         
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) {
             sr.flipX = movement.x < 0;
