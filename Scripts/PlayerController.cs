@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
         camera = cam.gameObject.GetComponent<Camera>();
         sr = GetComponent<SpriteRenderer>();
     }
-
+ 
     void Update() {
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
