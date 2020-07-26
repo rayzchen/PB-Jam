@@ -37,10 +37,9 @@ public class EnemyAI : MonoBehaviour {
         if (movement.magnitude < 0.2f) {
             pose = 8;
         }
-        sr.flipX = movement.x < 0;
+        sr.flipX = movement.x > 0;
 
         sr.sprite = textures[(int)pose];
-        print(pose);
 
         if(Vector2.Distance(transform.position, moveSpots[randomSpots].position) <= 0.2f) {
             if(waitTime <= 0) {
