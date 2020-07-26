@@ -32,17 +32,16 @@ public class PlayerController : MonoBehaviour {
         camera.orthographicSize *= 1 + 0.01f * Input.GetAxis("Z axis");
         
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) {
-            if (movement.x < movement.y) { if (-movement.x < movement.y) { direction = 2; } else { direction = 1; }
-            } else { if (-movement.x > movement.y) { direction = 0; } else { direction = 3; }}
+            sr.flipX = movement.x < 0;
         }
 
-        pose += movement.magnitude / 0.25f * Time.deltaTime;
+        pose += movement.magnitude / 0.2f * Time.deltaTime;
         pose %= 4;
         if (movement.magnitude < 0.01f) {
-            pose = 0;
+            pose = 4;
         }
 
-        sr.sprite = textures[(int)pose * 4 + direction];
+        sr.sprite = textures[(int)pose];
     }
 
     void FixedUpdate() {

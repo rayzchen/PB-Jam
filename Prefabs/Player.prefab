@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7900471080237662418}
   - component: {fileID: 7900471080237662416}
   m_Layer: 0
-  m_Name: ada_0_4
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,8 +105,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -5499926588793781772, guid: b0a40dc6eb851e34ba5c3fea3782d7bd,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: ae9f725f343b10d4f954f5153752ed25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -134,22 +133,11 @@ MonoBehaviour:
   camSpeed: 4
   stepSpeed: 0.25
   textures:
-  - {fileID: -3831868630579235074, guid: b0a40dc6eb851e34ba5c3fea3782d7bd, type: 3}
-  - {fileID: -160818325594125100, guid: b0a40dc6eb851e34ba5c3fea3782d7bd, type: 3}
-  - {fileID: 8423993313517602591, guid: b0a40dc6eb851e34ba5c3fea3782d7bd, type: 3}
-  - {fileID: 6993992217131648491, guid: b0a40dc6eb851e34ba5c3fea3782d7bd, type: 3}
-  - {fileID: -5499926588793781772, guid: b0a40dc6eb851e34ba5c3fea3782d7bd, type: 3}
-  - {fileID: 3177516014457453792, guid: b0a40dc6eb851e34ba5c3fea3782d7bd, type: 3}
-  - {fileID: 2714001473143009300, guid: b0a40dc6eb851e34ba5c3fea3782d7bd, type: 3}
-  - {fileID: -951881748078373329, guid: b0a40dc6eb851e34ba5c3fea3782d7bd, type: 3}
-  - {fileID: 1733262475097758803, guid: b0a40dc6eb851e34ba5c3fea3782d7bd, type: 3}
-  - {fileID: 5605396061221481353, guid: b0a40dc6eb851e34ba5c3fea3782d7bd, type: 3}
-  - {fileID: -1009635110113175042, guid: b0a40dc6eb851e34ba5c3fea3782d7bd, type: 3}
-  - {fileID: -3364105310983341902, guid: b0a40dc6eb851e34ba5c3fea3782d7bd, type: 3}
-  - {fileID: 6228911806611725994, guid: b0a40dc6eb851e34ba5c3fea3782d7bd, type: 3}
-  - {fileID: -4102091148598402206, guid: b0a40dc6eb851e34ba5c3fea3782d7bd, type: 3}
-  - {fileID: 3203264871413054046, guid: b0a40dc6eb851e34ba5c3fea3782d7bd, type: 3}
-  - {fileID: 1185392316873963865, guid: b0a40dc6eb851e34ba5c3fea3782d7bd, type: 3}
+  - {fileID: 2215745761463138581, guid: 90490c86f6d824349aabccc63b31d34d, type: 3}
+  - {fileID: 1700766857389022521, guid: 90490c86f6d824349aabccc63b31d34d, type: 3}
+  - {fileID: 2457880308640484884, guid: 90490c86f6d824349aabccc63b31d34d, type: 3}
+  - {fileID: -1273090703572220712, guid: 90490c86f6d824349aabccc63b31d34d, type: 3}
+  - {fileID: 21300000, guid: ae9f725f343b10d4f954f5153752ed25, type: 3}
 --- !u!50 &7900471080237662418
 Rigidbody2D:
   serializedVersion: 4
