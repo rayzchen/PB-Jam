@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
     void Update() {
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
-        movement = movement.normalized;
+        if (movement.magnitude > 1) movement = movement.normalized;
         cam.position = Vector3.SmoothDamp(cam.position, new Vector3(transform.position.x, transform.position.y, -10), ref velocity, 1 / camSpeed);
         camera.orthographicSize *= 1 + 0.01f * Input.GetAxis("Z axis");
         
