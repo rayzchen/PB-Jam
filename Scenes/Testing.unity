@@ -255,7 +255,12 @@ PrefabInstance:
     - target: {fileID: 7900471080237662412, guid: 3ef8c6afb79ad0f41947d9e141928893,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900471080281547932, guid: 3ef8c6afb79ad0f41947d9e141928893,
+        type: 3}
+      propertyPath: orthographic size
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ef8c6afb79ad0f41947d9e141928893, type: 3}
