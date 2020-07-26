@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour {
     Vector3 velocity = Vector3.zero;
     Camera camera;
     SpriteRenderer sr;
-    int direction;
     float pose;
 
     void Start() {
@@ -35,7 +34,7 @@ public class PlayerController : MonoBehaviour {
             sr.flipX = movement.x < 0;
         }
 
-        pose += movement.magnitude / 0.2f * Time.deltaTime;
+        pose += movement.magnitude * 5 * Time.deltaTime;
         pose %= 4;
         if (movement.magnitude < 0.01f) {
             pose = 4;
