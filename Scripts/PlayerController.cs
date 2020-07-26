@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     public float speed = 5f;
     public float camSpeed = 4f;
     public float stepSpeed = 0.5f;
+    public float minSize = 10f;
     public Sprite[] textures;
 
     Vector2 movement;
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour {
         movement.y = Input.GetAxis("Vertical");
         if (movement.magnitude > 1) movement = movement.normalized;
         cam.position = Vector3.SmoothDamp(cam.position, new Vector3(transform.position.x, 0, -10), ref velocity, 1 / camSpeed);
-        camera.orthographicSize = (Mathf.Abs(transform.position.y) + 2 > 5) ? Mathf.Abs(transform.position.y) + 2 : 5;
+        camera.orthographicSize = (Mathf.Abs(transform.position.y) + 2 > minSize) ? Mathf.Abs(transform.position.y) + 2 : minSize;
         
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) {
             sr.flipX = movement.x < 0;
