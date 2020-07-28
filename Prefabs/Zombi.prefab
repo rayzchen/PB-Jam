@@ -99,11 +99,9 @@ MonoBehaviour:
   player: {fileID: 0}
   speed: 5
   startWaitTime: 3
-  stoppingDistance: 3
+  stoppingDistance: 2
   retreatDistance: 10
-  moveSpots:
-  - {fileID: 0}
-  - {fileID: 0}
+  moveSpotsParent: {fileID: 0}
   textures:
   - {fileID: 5089187239388946034, guid: 0348f071bea6d6844b6e3db80b23d4c3, type: 3}
   - {fileID: 4721743434786302098, guid: 0348f071bea6d6844b6e3db80b23d4c3, type: 3}

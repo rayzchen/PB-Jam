@@ -9,5 +9,6 @@ public class PostprocessImages : AssetPostprocessor {
         textureImporter.spritePixelsPerUnit = 4;
         textureImporter.spritePivot = Vector2.down;
         textureImporter.filterMode = FilterMode.Point;
+        textureImporter.textureCompression = TextureImporterCompression.Uncompressed;
     }
 }

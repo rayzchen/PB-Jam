@@ -44,18 +44,19 @@ public class EnemyAI : MonoBehaviour {
             FollowPlayer();
         }
         movement = (Vector2)transform.position - start;
-        sr.flipX = movement.x > 0;
         pose += Time.deltaTime * 8;
         pose %= textures.Length - 1;
         if (movement.magnitude < 0.001f) {
             pose = textures.Length - 1;
+        } else {
+            sr.flipX = movement.x > 0;
         }
         sr.sprite = textures[(int)pose];
     }
 
     void Patrol() {
         transform.position = Vector2.MoveTowards(transform.position, randomSpots.position, speed * Time.deltaTime);
-        if (Vector2.Distance(transform.position, randomSpots.position) <= 0.2f) {
+        if (Vector2.Distance(transform.position, randomSpots.position) <= 0.1f) {
             if (waitTime <= 0) {
                 randomSpots = RandomSpot();
                 waitTime = startWaitTime;

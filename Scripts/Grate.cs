@@ -32,7 +32,7 @@ public class Grate : MonoBehaviour {
                     transform.localScale = new Vector3(0, 1, 1) + Vector3.right * Mathf.SmoothDamp(transform.localScale.x, 0, ref vel, 1f);
                     transform.position = start + Vector3.right * (1 - transform.localScale.x);
                 }
-            } else if (Input.GetKey(KeyCode.E)) {
+            } else if (Input.GetKey(KeyCode.O)) {
                 opening = true;
             }
         }
