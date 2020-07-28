@@ -23,6 +23,6 @@ public class UIManager : MonoBehaviour {
     }
 
     public void Level(int level) {
-        SceneManager.LoadScene("Level " + level.ToString());
+        SceneManager.LoadScene(level);
     }
 }

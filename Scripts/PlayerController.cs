@@ -8,8 +8,9 @@ public class PlayerController : MonoBehaviour {
     public float speed = 5f;
     public float camSpeed = 4f;
     public float stepSpeed = 0.5f;
-    public float minSize = 10f;
+    public float sprintSpeed = 1.5f;
     public Sprite[] textures;
+    public Sprite[] textures_walk;
 
     Vector2 movement;
     Rigidbody2D rb;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour {
     Camera camera;
     SpriteRenderer sr;
     float pose;
+    Vector4 camBounds;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -28,8 +30,7 @@ public class PlayerController : MonoBehaviour {
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
         if (movement.magnitude > 1) movement = movement.normalized;
-        cam.position = Vector3.SmoothDamp(cam.position, new Vector3(transform.position.x, 0, -10), ref velocity, 1 / camSpeed);
-        camera.orthographicSize = (Mathf.Abs(transform.position.y) + 2 > minSize) ? Mathf.Abs(transform.position.y) + 2 : minSize;
+        if (Input.GetKey(KeyCode.LeftShift)) movement *= sprintSpeed;
         
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) {
             sr.flipX = movement.x < 0;
@@ -41,7 +42,26 @@ public class PlayerController : MonoBehaviour {
             pose = 4;
         }
 
-        sr.sprite = textures[(int)pose];
+        if (Input.GetKey(KeyCode.LeftShift)) {
+            sr.sprite = textures_walk[(int)pose];
+        }  else {
+            sr.sprite = textures[(int)pose];
+        }
+
+        float screenAspect = (float) Screen.width / (float) Screen.height;
+        float camHalfWidth = camera.orthographicSize * screenAspect;
+
+        camBounds = new Vector4(cam.position.x - camHalfWidth + 4, cam.position.x + camHalfWidth - 4, cam.position.y + camera.orthographicSize - 6, cam.position.y - camera.orthographicSize + 2);
+        if (transform.position.x < camBounds.x) {
+            cam.position -= Vector3.right * (camBounds.x - transform.position.x);
+        } else if (transform.position.x > camBounds.y) {
+            cam.position += Vector3.right * (transform.position.x - camBounds.y);
+        }
+        if (transform.position.y > camBounds.z) {
+            cam.position += Vector3.up * (transform.position.y - camBounds.z);
+        } else if (transform.position.y < camBounds.w) {
+            cam.position -= Vector3.up * (camBounds.w - transform.position.y);
+        }
     }
 
     void FixedUpdate() {

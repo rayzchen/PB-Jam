@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnimationLoop : MonoBehaviour {
 
     public Sprite[] textures;
-    public float timeBetweenFrames;
+    public float timeBetweenFrames = 1;
+    public float frame = 0;
 
-    float frame;
     SpriteRenderer sr;
 
     void Start() {

@@ -3,51 +3,74 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour {
-    public float speed;
-    private float waitTime;
-    public float startWaitTime;
-    public Transform spots;
-    public Sprite[] textures;
 
-    private List<Transform> moveSpots;
-    private int randomSpots;
-    private Vector2 velocity = Vector2.zero;
-    private SpriteRenderer sr;
-    private float pose;
+    public Transform player;
+    public float speed;
+    public float startWaitTime;
+    public float stoppingDistance;
+    public float retreatDistance;
+    public Transform moveSpotsParent;
+    public Sprite[] textures;
+    
+    float waitTime;
+    Transform randomSpots;
+    int current = 0;
+    SpriteRenderer sr;
+    float pose;
+    Vector2 movement;
+    List<Transform> moveSpots;
 
     void Start() {
+        sr = GetComponent<SpriteRenderer>();
         moveSpots = new List<Transform>();
-        foreach (Transform child in spots) {
+        foreach (Transform child in moveSpotsParent) {
             moveSpots.Add(child);
         }
-        waitTime = startWaitTime;
-        randomSpots = Random.Range(0, moveSpots.Count);
-        sr = GetComponent<SpriteRenderer>();
+        randomSpots = RandomSpot();
     }
 
-    // Update is called once per frame
-    void Update() {
-        Vector2 before = transform.position;
-        transform.position = Vector2.SmoothDamp(transform.position, moveSpots[randomSpots].position, ref velocity, speed / 7);
-        Vector2 after = transform.position;
-        Vector2 movement = (after - before) * 2 / (Time.deltaTime * 3);
-        
-        pose += movement.magnitude * 2 * Time.deltaTime;
-        pose %= 4;
-        if (movement.magnitude < 0.2f) {
-            pose = 8;
+    Transform RandomSpot() {
+        List<Transform> cp = new List<Transform>(moveSpots);
+        cp.Remove(moveSpots[current]);
+        current = Random.Range(0, cp.Count);
+        return cp[current];
+    }
+
+    void Update()  {
+        Vector2 start = transform.position;
+        if (Vector2.Distance(transform.position, player.position) > retreatDistance) {
+            Patrol();
+        } else {
+            FollowPlayer();
         }
+        movement = (Vector2)transform.position - start;
         sr.flipX = movement.x > 0;
-
+        pose += Time.deltaTime * 8;
+        pose %= textures.Length - 1;
+        if (movement.magnitude < 0.001f) {
+            pose = textures.Length - 1;
+        }
         sr.sprite = textures[(int)pose];
+    }
 
-        if(Vector2.Distance(transform.position, moveSpots[randomSpots].position) <= 0.2f) {
-            if(waitTime <= 0) {
-                randomSpots = Random.Range(0, moveSpots.Count);
+    void Patrol() {
+        transform.position = Vector2.MoveTowards(transform.position, randomSpots.position, speed * Time.deltaTime);
+        if (Vector2.Distance(transform.position, randomSpots.position) <= 0.2f) {
+            if (waitTime <= 0) {
+                randomSpots = RandomSpot();
                 waitTime = startWaitTime;
             } else {
                 waitTime -= Time.deltaTime;
             }
+        }
+    }
+
+    void FollowPlayer() {
+        if (Vector2.Distance(transform.position, player.position) > stoppingDistance) {
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime); 
+        } else {
+            movement = Vector2.zero;
+            //Attack the player
         }
     }
 }

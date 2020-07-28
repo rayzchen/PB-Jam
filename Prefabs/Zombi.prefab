@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 3370969560176630504}
   - component: {fileID: 3370969560176630505}
   - component: {fileID: 3370969560176630038}
+  - component: {fileID: 3370969559465310443}
+  - component: {fileID: 738519284}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Zombi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -36
   m_Sprite: {fileID: 21300000, guid: 4d5bded2770ce3141bf59ceb92fc43cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -94,9 +96,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f375e6573a59d448693071d42f3cd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   speed: 5
   startWaitTime: 3
-  spots: {fileID: 0}
+  stoppingDistance: 3
+  retreatDistance: 10
+  moveSpots:
+  - {fileID: 0}
+  - {fileID: 0}
   textures:
   - {fileID: 5089187239388946034, guid: 0348f071bea6d6844b6e3db80b23d4c3, type: 3}
   - {fileID: 4721743434786302098, guid: 0348f071bea6d6844b6e3db80b23d4c3, type: 3}
@@ -107,3 +114,37 @@ MonoBehaviour:
   - {fileID: -966575010461579461, guid: 0348f071bea6d6844b6e3db80b23d4c3, type: 3}
   - {fileID: -3477050507558317006, guid: 0348f071bea6d6844b6e3db80b23d4c3, type: 3}
   - {fileID: 21300000, guid: 4d5bded2770ce3141bf59ceb92fc43cc, type: 3}
+--- !u!114 &3370969559465310443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3370969560176630039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bc0e609277956b47ade6c3cdeca6d8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortOffset: 0
+--- !u!50 &738519284
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3370969560176630039}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
