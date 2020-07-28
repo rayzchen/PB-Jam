@@ -19,21 +19,19 @@ public class Grate : MonoBehaviour {
 
     void Update() {
         if (Vector2.Distance(transform.position, player.position) < minDistance) {
-            if (opening) {
-                if (transform.localScale.x < 0.01f) {
-                    transform.localScale = Vector3.one;
-                    sr.enabled = false;
-                    opening = false;
-                    Chute chute = gameObject.AddComponent<Chute>();
-                    chute.player = player;
-                    chute.minDistance = minDistance;
-                    Destroy(this);
-                } else {
-                    transform.localScale = new Vector3(0, 1, 1) + Vector3.right * Mathf.SmoothDamp(transform.localScale.x, 0, ref vel, 1f);
-                    transform.position = start + Vector3.right * (1 - transform.localScale.x);
-                }
-            } else if (Input.GetKey(KeyCode.O)) {
+            if (Input.GetKey(KeyCode.O)) {
                 opening = true;
+            }
+        }
+        if (opening) {
+            if (transform.localScale.x < 0.01f) {
+                Chute chute = gameObject.AddComponent<Chute>();
+                chute.player = player;
+                chute.minDistance = minDistance;
+                Destroy(this);
+            } else {
+                transform.localScale = new Vector3(0, 1, 1) + Vector3.right * Mathf.SmoothDamp(transform.localScale.x, 0, ref vel, 1f);
+                transform.position = start + Vector3.right * (1 - transform.localScale.x);
             }
         }
     }

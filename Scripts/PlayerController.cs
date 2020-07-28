@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour {
 
             if (Input.GetKey(KeyCode.E)) {
                 searching = true;
+                movement = Vector2.zero;
             }
         } else {
             frame += 1 / timeBetweenSearchFrames * Time.deltaTime;
