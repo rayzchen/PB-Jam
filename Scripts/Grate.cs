@@ -5,6 +5,7 @@ using UnityEngine;
 public class Grate : MonoBehaviour {
 
     public Transform player;
+    public PlayerController playerScript;
     public float minDistance = 3;
 
     bool opening = false;
@@ -19,8 +20,10 @@ public class Grate : MonoBehaviour {
 
     void Update() {
         if (Vector2.Distance(transform.position, player.position) < minDistance) {
-            if (Input.GetKey(KeyCode.O)) {
-                opening = true;
+            if (playerScript.items.Contains("Crowbar")) {
+                if (Input.GetKey(KeyCode.O)) {
+                    opening = true;
+                }
             }
         }
         if (opening) {
@@ -31,7 +34,7 @@ public class Grate : MonoBehaviour {
                 Destroy(this);
             } else {
                 transform.localScale = new Vector3(0, 1, 1) + Vector3.right * Mathf.SmoothDamp(transform.localScale.x, 0, ref vel, 1f);
-                transform.position = start + Vector3.right * (1 - transform.localScale.x);
+                transform.position = start + Vector3.right * (2 - transform.localScale.x * 2);
             }
         }
     }

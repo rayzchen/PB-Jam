@@ -22,9 +22,11 @@ public class Item : MonoBehaviour {
     }
 
     IEnumerator Reveal() {
+        float start = Random.Range(0.5f, 1.5f);
+        yield return new WaitForSeconds(start);
         GetComponent<IsometricSorter>().sortOffset = 1000;
         float wait = 0f;
-        while (wait < 1f) {
+        while (wait < 2 - start) {
             transform.position = Vector2.SmoothDamp(transform.position, (Vector2)player.transform.position + Vector2.up * 4, ref vel, 0.5f);
             wait += Time.deltaTime;
             yield return new WaitForFixedUpdate();

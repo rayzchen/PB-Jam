@@ -73,21 +73,21 @@ public class PlayerController : MonoBehaviour {
                 cam.position -= Vector3.up * (camBounds.w - transform.position.y);
             }
 
-            if (Input.GetKey(KeyCode.E)) {
+            if (Input.GetKey(KeyCode.Q)) {
                 searching = true;
                 movement = Vector2.zero;
             }
         } else {
             frame += 1 / timeBetweenSearchFrames * Time.deltaTime;
-            if (Input.GetKey(KeyCode.C) || frame > textures_search.Length * 5) {
+            if (Input.GetKey(KeyCode.C) || frame > textures_search.Length * 2) {
                 searching = false;
-                frame = 0;
-                if (frame > textures_search.Length * 5) {
+                if (!Input.GetKey(KeyCode.C)) {
                     foreach (string item in pickedUp) {
                         print("Picked up " + item);
                         items.Add(item);
                     }
                 }
+                frame = 0;
             }
             sr.sprite = textures_search[(int)(frame % textures_search.Length)];
         }
