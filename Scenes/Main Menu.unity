@@ -271,7 +271,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -413,7 +412,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -547,7 +545,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.11372549}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1160,7 +1157,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.11372549}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1290,7 +1286,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.11372549}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1502,8 +1497,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1652576655}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 231.3, y: 92, z: -0}
-  m_LocalScale: {x: 7, y: 7, z: 1}
+  m_LocalPosition: {x: 201, y: 67, z: -0}
+  m_LocalScale: {x: 14, y: 14, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -1629,8 +1624,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1701353507}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 74.25, y: -10.500001, z: -0}
-  m_LocalScale: {x: 7, y: 7, z: 1}
+  m_LocalPosition: {x: 93, y: 8, z: 0}
+  m_LocalScale: {x: 14, y: 14, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -2005,7 +2000,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2089,7 +2083,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9114789695211296444, guid: 7c841690e48029d43ad025af8c51996e,
+  m_Sprite: {fileID: 1349284311683494728, guid: c96b9ead0b4268445b76c780a30eea3e,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2109,8 +2103,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2088597250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -31.8, y: 0, z: 100}
-  m_LocalScale: {x: 7, y: 7, z: 1}
+  m_LocalPosition: {x: -49, y: 5, z: 100}
+  m_LocalScale: {x: 14, y: 14, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -2128,15 +2122,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textures:
-  - {fileID: -9114789695211296444, guid: 7c841690e48029d43ad025af8c51996e, type: 3}
-  - {fileID: -8054865279968501609, guid: 7c841690e48029d43ad025af8c51996e, type: 3}
-  - {fileID: -5774990045771971401, guid: 7c841690e48029d43ad025af8c51996e, type: 3}
-  - {fileID: -3160372554668190018, guid: 7c841690e48029d43ad025af8c51996e, type: 3}
-  - {fileID: -2840503266302287447, guid: 7c841690e48029d43ad025af8c51996e, type: 3}
-  - {fileID: 1498323129810221274, guid: 7c841690e48029d43ad025af8c51996e, type: 3}
+  - {fileID: 1349284311683494728, guid: c96b9ead0b4268445b76c780a30eea3e, type: 3}
+  - {fileID: 1811028978733339403, guid: c96b9ead0b4268445b76c780a30eea3e, type: 3}
+  - {fileID: -3418777012619138979, guid: c96b9ead0b4268445b76c780a30eea3e, type: 3}
+  - {fileID: -640171092902746312, guid: c96b9ead0b4268445b76c780a30eea3e, type: 3}
+  - {fileID: 3861705784958575891, guid: c96b9ead0b4268445b76c780a30eea3e, type: 3}
+  - {fileID: 835780347481682962, guid: c96b9ead0b4268445b76c780a30eea3e, type: 3}
+  - {fileID: -3927745177507096303, guid: c96b9ead0b4268445b76c780a30eea3e, type: 3}
+  - {fileID: -479942359008702249, guid: c96b9ead0b4268445b76c780a30eea3e, type: 3}
   timeBetweenFrames: 0.25
   frame: 0
-  randomness: 0
+  randomness: 1
   shouldLoop: 1
 --- !u!114 &2088597254
 MonoBehaviour:
