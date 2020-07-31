@@ -4,10 +4,10 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: 1639851531712166838
-    second: grate 1_0
+    second: grate
   - first:
       213: -8876712902690217235
-    second: grate 1_1
+    second: hole
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -141,15 +141,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: grate 1_0
+      name: grate
       rect:
         serializedVersion: 2
         x: 0
         y: 32
         width: 48
         height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.48, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -162,7 +162,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grate 1_1
+      name: hole
       rect:
         serializedVersion: 2
         x: 0

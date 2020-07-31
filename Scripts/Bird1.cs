@@ -14,9 +14,11 @@ public class Bird1 : MonoBehaviour {
     SpriteRenderer sr;
     bool flyingaway = false;
     bool flyingback = false;
+    AudioSource audio;
 
     void Start() {
         sr = GetComponent<SpriteRenderer>();
+        audio = GetComponent<AudioSource>();
     }
 
     void Update() {
@@ -40,6 +42,7 @@ public class Bird1 : MonoBehaviour {
             }
         } else {
             if (!flyingaway) {
+                audio.Play();
                 flyingaway = true;
                 frame = 0;
             }

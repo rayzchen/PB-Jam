@@ -7,6 +7,7 @@ public class Grate : MonoBehaviour {
     public Transform player;
     public PlayerController playerScript;
     public float minDistance = 3;
+    public Chute chute;
 
     bool opening = false;
     Vector3 start;
@@ -28,13 +29,11 @@ public class Grate : MonoBehaviour {
         }
         if (opening) {
             if (transform.localScale.x < 0.01f) {
-                Chute chute = gameObject.AddComponent<Chute>();
-                chute.player = player;
-                chute.minDistance = minDistance;
+                chute.enabled = true;
                 Destroy(this);
             } else {
                 transform.localScale = new Vector3(0, 1, 1) + Vector3.right * Mathf.SmoothDamp(transform.localScale.x, 0, ref vel, 1f);
-                transform.position = start + Vector3.right * (2 - transform.localScale.x * 2);
+                transform.position = start + Vector3.right * 2.75f * (1 - transform.localScale.x);
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
 
@@ -13,84 +14,119 @@ public class PlayerController : MonoBehaviour {
     public Sprite[] textures_walk;
     public Sprite[] textures_search;
     public float timeBetweenSearchFrames = 1;
+    public AudioClip[] sounds;
+    public float dampening = 2;
+    public Color invisibleColor;
+    public Color normalColor;
+    public Text itemText;
 
     Vector2 movement;
     Rigidbody2D rb;
-    Vector3 velocity = Vector3.zero;
+    Vector2 vel = Vector2.zero;
     Camera camera;
     SpriteRenderer sr;
     float pose;
-    Vector4 camBounds;
     float frame = 0;
+    AudioSource audio;
+    bool started = false;
 
     [HideInInspector] public List<string> pickedUp;
     [HideInInspector] public bool searching = false;
     [HideInInspector] public List<string> items;
+    [HideInInspector] public bool sprinting = false;
 
-    void Start() {
+    IEnumerator Start() {
         rb = GetComponent<Rigidbody2D>();
         camera = cam.gameObject.GetComponent<Camera>();
         sr = GetComponent<SpriteRenderer>();
         pickedUp = new List<string>();
         items = new List<string>();
+        audio = GetComponent<AudioSource>();
+        audio.volume = 0.6f;
+        yield return new WaitForSeconds(2f);
+        started = true;
     }
 
     void Update() {
-        if (!searching) {
-            movement.x = Input.GetAxis("Horizontal");
-            movement.y = Input.GetAxis("Vertical");
-            if (movement.magnitude > 1) movement = movement.normalized;
-            if (Input.GetKey(KeyCode.LeftShift)) movement *= sprintSpeed;
-            
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) {
-                sr.flipX = movement.x < 0;
-            }
+        if (started) {
+            if (!searching) {
+                movement.x = Input.GetAxis("Horizontal");
+                movement.y = Input.GetAxis("Vertical");
+                if (movement.magnitude > 1) movement = movement.normalized;
+                if (Input.GetKey(KeyCode.LeftShift)) movement *= sprintSpeed;
+                
+                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) {
+                    sr.flipX = movement.x < 0;
+                    sprinting = Input.GetKey(KeyCode.LeftShift);
+                    if (sprinting) audio.volume = 1f;
+                    else audio.volume = 0.6f;
+                } else {
+                    sprinting = false;
+                }
 
-            pose += movement.magnitude * 5 * Time.deltaTime;
-            pose %= 4;
-            if (movement.magnitude < 0.01f) {
-                pose = 4;
-            }
+                int lastStep = (int)(pose / 2);
+                pose += movement.magnitude * 5 * Time.deltaTime;
+                pose %= 4;
+                if (movement.magnitude < 0.01f) {
+                    pose = 4;
+                }
 
-            if (Input.GetKey(KeyCode.LeftShift)) {
-                sr.sprite = textures_walk[(int)pose];
-            }  else {
-                sr.sprite = textures[(int)pose];
-            }
+                if ((int)(pose / 2) != lastStep) {
+                    audio.Stop();
+                    if (audio.clip == sounds[0]) audio.clip = sounds[1];
+                    else if (audio.clip == sounds[1]) audio.clip = sounds[0];
+                    audio.Play();
+                }
 
-            float screenAspect = (float) Screen.width / (float) Screen.height;
-            float camHalfWidth = camera.orthographicSize * screenAspect;
+                if (Input.GetKey(KeyCode.LeftShift)) {
+                    sr.sprite = textures_walk[(int)pose];
+                }  else {
+                    sr.sprite = textures[(int)pose];
+                }
 
-            camBounds = new Vector4(cam.position.x - camHalfWidth + 4, cam.position.x + camHalfWidth - 4, cam.position.y + camera.orthographicSize - 6, cam.position.y - camera.orthographicSize + 2);
-            if (transform.position.x < camBounds.x) {
-                cam.position -= Vector3.right * (camBounds.x - transform.position.x);
-            } else if (transform.position.x > camBounds.y) {
-                cam.position += Vector3.right * (transform.position.x - camBounds.y);
-            }
-            if (transform.position.y > camBounds.z) {
-                cam.position += Vector3.up * (transform.position.y - camBounds.z);
-            } else if (transform.position.y < camBounds.w) {
-                cam.position -= Vector3.up * (camBounds.w - transform.position.y);
-            }
+                cam.position = (Vector3)Vector2.SmoothDamp(cam.position, transform.position + Vector3.up * 2, ref vel, dampening) + Vector3.forward * -10;
 
-            if (Input.GetKey(KeyCode.Q)) {
-                searching = true;
-                movement = Vector2.zero;
-            }
-        } else {
-            frame += 1 / timeBetweenSearchFrames * Time.deltaTime;
-            if (Input.GetKey(KeyCode.C) || frame > textures_search.Length * 2) {
-                searching = false;
-                if (!Input.GetKey(KeyCode.C)) {
+                if (items.Contains("Potion") && Input.GetKey(KeyCode.U)) {
+                    items.Remove("Potion");
+                    StartCoroutine(InvisibilityPotion());
+                }
+
+                string temp = "Items: ";
+                if (items.Count == 0) {
+                    temp += "None";
+                } else {
+                    foreach (string item in items) {
+                        temp += item + " ";
+                    }
+                }
+                itemText.text = temp;
+
+                if (Input.GetKey(KeyCode.E)) {
+                    searching = true;
+                    movement = Vector2.zero;
+                }
+            } else {
+                frame += 1 / timeBetweenSearchFrames * Time.deltaTime;
+                if (Input.GetKey(KeyCode.C) || frame > textures_search.Length * 2) {
+                    searching = false;
                     foreach (string item in pickedUp) {
                         print("Picked up " + item);
                         items.Add(item);
                     }
+                    frame = 0;
+                    pickedUp.Clear();
                 }
-                frame = 0;
+                sr.sprite = textures_search[(int)(frame % textures_search.Length)];
             }
-            sr.sprite = textures_search[(int)(frame % textures_search.Length)];
         }
+    }
+
+    IEnumerator InvisibilityPotion() {
+        gameObject.layer = 2;
+        sr.color = invisibleColor;
+        yield return new WaitForSeconds(5f);
+        gameObject.layer = 8;
+        sr.color = normalColor;
     }
 
     void FixedUpdate() {
