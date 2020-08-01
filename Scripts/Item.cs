@@ -16,7 +16,6 @@ public class Item : MonoBehaviour {
     void Update() {
         if (player.searching && !added && Vector2.Distance(player.transform.position, transform.position) < minDistance) {
             added = true;
-            player.pickedUp.Add(itemName);
             StartCoroutine(Reveal());
         }
     }
@@ -24,6 +23,7 @@ public class Item : MonoBehaviour {
     IEnumerator Reveal() {
         float start = Random.Range(0.5f, 1.5f);
         yield return new WaitForSeconds(start);
+        player.pickedUp.Add(itemName);
         GetComponent<IsometricSorter>().sortOffset = 1000;
         float wait = 0f;
         while (wait < 2 - start) {

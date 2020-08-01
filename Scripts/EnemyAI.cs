@@ -71,6 +71,10 @@ public class EnemyAI : MonoBehaviour {
             } else {
                 Patrol();
             }
+
+            if (Vector2.Distance(start, player.position) < stoppingDistance) {
+                playerScript.CancelInvisibility();
+            }
             movement = (Vector2)transform.position - start;
             pose += Time.deltaTime * 8;
             pose %= textures.Length - 1;

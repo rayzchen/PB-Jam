@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 51
+  m_SortingOrder: 52
   m_Sprite: {fileID: 8334651344603559088, guid: ccf6ce882d28a2a4a8e03fd5809aa590,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -114,6 +114,8 @@ MonoBehaviour:
   - {fileID: 9204931480678746970, guid: ccf6ce882d28a2a4a8e03fd5809aa590, type: 3}
   timeBetweenFrames: 0.5
   frame: 0
+  randomness: 0
+  shouldLoop: 1
 --- !u!1 &1165499985944516250
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,6 +128,7 @@ GameObject:
   - component: {fileID: 1165499985944516260}
   - component: {fileID: 1165499985944516261}
   - component: {fileID: 9160175265342252558}
+  - component: {fileID: 1165499984864996295}
   m_Layer: 0
   m_Name: car2
   m_TagString: Untagged
@@ -187,7 +190,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 50
+  m_SortingOrder: 51
   m_Sprite: {fileID: 60676661907920433, guid: b4b316bc0e6215449958154cce24c690, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -222,7 +225,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -242,6 +245,20 @@ PolygonCollider2D:
       - {x: -4.305174, y: 1.8175869}
       - {x: -4.27, y: 0.65}
       - {x: 3.1610374, y: -1.9037938}
+--- !u!114 &1165499984864996295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1165499985944516250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48753a36584f0d54a89742597b81bd78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canv: {fileID: 0}
+  hideInPause: {fileID: 0}
 --- !u!1 &1165499986064433730
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +330,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -2
   m_Sprite: {fileID: 3580998098276059936, guid: 4784577f2a921ed47950d8005faad663,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.29803923}
@@ -356,3 +373,5 @@ MonoBehaviour:
   - {fileID: -3398468216842529027, guid: 4784577f2a921ed47950d8005faad663, type: 3}
   timeBetweenFrames: 0.5
   frame: 0
+  randomness: 0
+  shouldLoop: 1

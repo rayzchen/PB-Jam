@@ -12,6 +12,7 @@ public class PauseManager : MonoBehaviour {
     public float timeBetweenFrames = 0.25f;
 
     bool paused = false;
+    bool transition = false;
 
     public IEnumerator AsyncLoad(int index) {
         sr.transform.parent = null;
@@ -42,11 +43,13 @@ public class PauseManager : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)) {
-            if (!paused) {
-                Pause();
-            } else {
-                UnPause();
+        if (!transition) {
+            if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)) {
+                if (!paused) {
+                    Pause();
+                } else {
+                    UnPause();
+                }
             }
         }
     }
@@ -73,10 +76,12 @@ public class PauseManager : MonoBehaviour {
     }
 
     public void Restart() {
+        transition = true;
         StartCoroutine(AsyncLoad(SceneManager.GetActiveScene().buildIndex));
     }
 
     public void Menu() {
+        transition = true;
         StartCoroutine(AsyncLoad(1));
     }
 }

@@ -12,5 +12,6 @@ public class CustomButton : MonoBehaviour {
 
     void OnMouseDown() {
         callback.Invoke();
+        Destroy(this);
     }
 }

@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
         if (started) {
+            cam.position = (Vector3)Vector2.SmoothDamp(cam.position, transform.position + Vector3.up * 2, ref vel, dampening) + Vector3.forward * -10;
             if (!searching) {
                 movement.x = Input.GetAxis("Horizontal");
                 movement.y = Input.GetAxis("Vertical");
@@ -83,8 +84,6 @@ public class PlayerController : MonoBehaviour {
                 }  else {
                     sr.sprite = textures[(int)pose];
                 }
-
-                cam.position = (Vector3)Vector2.SmoothDamp(cam.position, transform.position + Vector3.up * 2, ref vel, dampening) + Vector3.forward * -10;
 
                 if (items.Contains("Potion") && Input.GetKey(KeyCode.U)) {
                     items.Remove("Potion");
@@ -124,7 +123,13 @@ public class PlayerController : MonoBehaviour {
     IEnumerator InvisibilityPotion() {
         gameObject.layer = 2;
         sr.color = invisibleColor;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(10f);
+        gameObject.layer = 8;
+        sr.color = normalColor;
+    }
+
+    public void CancelInvisibility() {
+        StopAllCoroutines();
         gameObject.layer = 8;
         sr.color = normalColor;
     }
